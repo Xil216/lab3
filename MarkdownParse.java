@@ -54,6 +54,8 @@ public class MarkdownParse {
         // the next )
         int currentIndex = 0;
         while(currentIndex < markdown.length()) {
+            System.out.println("index at the start " + currentIndex);
+
             int nextOpenBracket = markdown.indexOf("[", currentIndex);
             int nextCodeBlock = markdown.indexOf("\n```");
             if(nextCodeBlock < nextOpenBracket && nextCodeBlock != -1) {
@@ -64,17 +66,25 @@ public class MarkdownParse {
             int nextCloseBracket = markdown.indexOf("]", nextOpenBracket);
             int openParen = markdown.indexOf("(", nextCloseBracket);
 
+            // vales current index has
+
+
+
             // The close paren we need may not be the next one in the file
             int closeParen = findCloseParen(markdown, openParen);
             
             if(nextOpenBracket == -1 || nextCloseBracket == -1
                   || closeParen == -1 || openParen == -1) {
                 return toReturn;
+
+
             }
             String potentialLink = markdown.substring(openParen + 1, closeParen).trim();
             if(potentialLink.indexOf(" ") == -1 && potentialLink.indexOf("\n") == -1) {
                 toReturn.add(potentialLink);
                 currentIndex = closeParen + 1;
+
+                //indec here
             }
             else {
                 currentIndex = currentIndex + 1;
@@ -87,5 +97,7 @@ public class MarkdownParse {
         String contents = Files.readString(fileName);
         ArrayList<String> links = getLinks(contents);
         System.out.println(links);
+
     }
 }
+
