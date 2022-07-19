@@ -43,8 +43,8 @@ public class MarkdownParse {
             if(lastDot == -1 || !p.toString().substring(lastDot).equals(".md")) {
                 return result;
             }
-            ArrayList<String> links = getLinks(Files.readString(p));
-            result.put(dirOrFile.getPath(), links);
+            ArrayList<String> webLinksList = getLinks(Files.readString(p)); //add List here
+            result.put(dirOrFile.getPath(), webLinksList);
             return result;
         }
     }
@@ -95,8 +95,8 @@ public class MarkdownParse {
     public static void main(String[] args) throws IOException {
         Path fileName = Path.of(args[0]);
         String contents = Files.readString(fileName);
-        ArrayList<String> links = getLinks(contents);
-        System.out.println(links);
+        ArrayList<String> webLinksLink = getLinks(contents); //add Link
+        System.out.println(webLinksLink);
 
     }
 }
